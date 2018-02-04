@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 public class ChatGraphic extends JFrame{
     static final int WIDTH = 1024;
     static final int HEIGHT = 768;
+    JTextArea jTextArea2 ;
+    JTextField jTextField;
     public ChatGraphic(){
         setTitle("BriZzChat");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -60,11 +62,9 @@ public class ChatGraphic extends JFrame{
         button1.getColorModel();
         button1.setBackground(new Color(100+3*40,100+3*40,99+40));
 
-        JTextArea jTextArea2 = new JTextArea();
-        JTextField jTextField = new JTextField();
+         jTextArea2 = new JTextArea();
+         jTextField = new JTextField();
         JTable jTable = new JTable();
-//        jTable.setBackground(new Color(100+3*40,100+3*40,99+40));
-
 
         JScrollPane scrollPane1 = new JScrollPane(jTable);
         scrollPane1.setPreferredSize(new Dimension(190, 655));
@@ -75,23 +75,18 @@ public class ChatGraphic extends JFrame{
 
         jTextArea2.setEditable(false);
         jTextArea2.setLineWrap(true);
-       // jTextField.setLineWrap(true);
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                jTextArea2.append( "Ваше сообщение: "+ jTextField.getText() + "\n");
-                jTextField.setText("");
+                sendMessage();
             }
         });
 
         jTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
-                jTextArea2.append("Ваше сообщение: " + jTextField.getText() + "\n");
-                jTextArea2.setCaretPosition(jTextArea2.getDocument().getLength());
-                jTextField.setText("");
+                sendMessage();
             }
         });
 
@@ -105,5 +100,10 @@ public class ChatGraphic extends JFrame{
         add(jpeast[2], BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+    public void sendMessage(){
+        jTextArea2.append("Ваше сообщение: " + jTextField.getText() + "\n");
+        jTextArea2.setCaretPosition(jTextArea2.getDocument().getLength());
+        jTextField.setText("");
     }
 }
